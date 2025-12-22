@@ -1179,7 +1179,14 @@
   #
   # TODO: handle tags, and delete superfluous branches, and add error handling.
   #
-  mainly = "!git checkout \"$(git default-branch)\" && git fetch origin --prune && git reset --hard \"origin/$(git default-branch)\""
+  mainly = "!f() { \
+      branch=$(git default-branch); \
+      git checkout \"$branch\"; \
+      branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@'); \
+      [ -z \"$branch\" ] && branch=$(git rev-parse --abbrev-ref HEAD); \
+      git fetch \"${1:-origin}\" --prune; \
+      git reset --hard \"${1:-origin}/$branch\"; \
+  }; f"
 
   # Ignore all untracked files by appending them to .gitignore:
   ignore = "!git status | grep -P \"^\\t\" | grep -vF .gitignore | sed \"s/^\\t//\" >> .gitignore"
