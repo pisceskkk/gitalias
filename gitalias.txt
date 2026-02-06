@@ -206,6 +206,12 @@
   # Fetch all remotes and delete stale references associated with the remotes
   fap = fetch --all --prune
 
+  # Fetch origin
+  fo = fetch origin
+
+  # Fetch upstream
+  fu = fetch upstream
+
   ### grep aliases ###
 
   # grep -n means show line number
@@ -373,6 +379,9 @@
 
   # rebase interactive - do the rebase with prompts.
   rbi = rebase --interactive
+
+  # fetch upstream/main and rebase with upstream/main
+  rbm = "!git fetch upstream/main && git rebase upstream/main"
 
   # rbiu - rebase interactive on our unpushed commits.
   #
