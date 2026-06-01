@@ -85,6 +85,7 @@
   p = pull
   s = status
   w = whatchanged
+  wt = worktree
 
   ##
   # Short aliases for frequent commands and options.
@@ -381,7 +382,7 @@
   rbi = rebase --interactive
 
   # fetch upstream/main and rebase with upstream/main
-  rbm = "!git fetch upstream/main && git rebase upstream/main"
+  rbm = "!git fetch upstream && git rebase upstream/main"
 
   # rbiu - rebase interactive on our unpushed commits.
   #
